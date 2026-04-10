@@ -1,0 +1,879 @@
+category,response_norm
+clothing,shirt
+clothing,t-shirt
+clothing,long sleeve shirt
+clothing,long sleeve
+clothing,pants
+clothing,cargo pants
+clothing,jean skirt
+clothing,dress shirt
+clothing,shorts
+clothing,sweater
+clothing,jeans
+clothing,hat
+clothing,sock
+clothing,underwear
+clothing,shoe
+clothing,dress
+clothing,vest
+clothing,coat
+clothing,tanktop
+clothing,tubetop
+clothing,socks
+clothing,coats
+clothing,jacket
+clothing,sweatshirt
+clothing,leggings
+clothing,sweatpants
+clothing,sweatshorts
+clothing,pajamas
+clothing,sweatpabnts
+clothing,joggers
+clothing,croptop
+clothing,zipup
+clothing,puffercoat
+clothing,shoes
+clothing,bra
+clothing,blouse
+clothing,tshirt
+clothing,skirt
+clothing,bathingsuit
+clothing,raincoat
+clothing,hoodie
+clothing,longsleeveshirt
+clothing,boots
+clothing,cargopants
+clothing,jeanskirt
+clothing,dressshirt
+clothing,glove
+clothing,scarf
+clothing,beanie
+clothing,blazer
+clothing,trouser
+clothing,longsleeve
+food,pizza
+food,breakfast sandwhich
+food,bon bon
+food,baby back ribs
+food,brussel sprout
+food,baked good
+food,ice cream
+food,Mac and cheese
+food,green beans
+food,big mac
+food,bean dip
+food,bell pepper
+food,brussels sprouts
+food,steak
+food,greenbeans
+food,carrot
+food,frenchfries
+food,chicken
+food,salmon
+food,haddock
+food,pie
+food,cake
+food,cookie
+food,lemon
+food,apple
+food,orange
+food,grape
+food,fruit
+food,pasta
+food,spaghetti
+food,ramen
+food,icecream
+food,noodles
+food,friedrice
+food,rice
+food,poke
+food,fish
+food,hamburger
+food,sandwhich
+food,lettuce
+food,corn
+food,brocolli
+food,strawberry
+food,banana
+food,kale
+food,tomatoe
+food,potato
+food,espragus
+food,bread
+food,cauliflower
+food,blueberry
+food,banna
+food,pinapple
+food,beef
+food,muffin
+food,meatball
+food,pork
+food,chipoltle
+food,vegtables
+food,patatos
+food,sauce
+food,condiment
+food,fries
+food,burger
+food,taco
+food,bagel
+food,donut
+food,salad
+food,pretzels
+food,sushi
+food,tacos
+food,burritos
+food,carrots
+food,broccoli
+food,sausage
+food,turkey
+food,potatos
+food,sweetpotatos
+food,gravy
+food,peas
+food,roll
+food,brad
+food,breadstick
+food,cheese
+food,chips
+food,brownies
+food,cookies
+food,candy
+food,meat
+food,soup
+food,macandcheese
+food,seafood
+food,crab
+food,lobster
+food,clams
+food,oysters
+food,ribs
+food,chocolate
+food,butterchicken
+food,laulau
+food,apples
+food,pear
+food,cod
+food,potatoes
+food,fry
+food,carrott
+furniture,chair
+furniture,Kitchen island
+furniture,Laundry machine
+furniture,table
+furniture,desk
+furniture,cabinet
+furniture,drawer
+furniture,nightstand
+furniture,coach
+furniture,couch
+furniture,lamp
+furniture,loveseat
+furniture,stand
+furniture,shelf
+furniture,mirror
+furniture,massagechair
+furniture,coaster
+furniture,sofa
+furniture,bed
+furniture,bedframe
+furniture,vanity
+furniture,draw
+furniture,dresser
+furniture,closet
+furniture,ottoman
+furniture,stool
+furniture,seat
+furniture,fridge
+furniture,counter
+furniture,bed frame
+furniture,coffeetable
+furniture,bench
+furniture,rug
+furniture,tvstand
+furniture,kitchenisland
+furniture,stove
+furniture,laundrymachine
+furniture,oven
+furniture,futon
+furniture,lounge
+furniture,windowpane
+furniture,recliner
+furniture,sink
+furniture,beanbag
+furniture,tv
+furniture,bedsidetable
+furniture,sectional
+furniture,napkin holder
+furniture,nook bench
+furniture,nursing chair
+bodyparts,nose
+bodyparts,‘fingers
+bodyparts,'fingers
+bodyparts,auditory canal
+bodyparts,eyes
+bodyparts,hands
+bodyparts,hand
+bodyparts,leg
+bodyparts,vagina
+bodyparts,penis
+bodyparts,fingers
+bodyparts,finger
+bodyparts,toe
+bodyparts,toes
+bodyparts,nail
+bodyparts,nails
+bodyparts,eyebrow
+bodyparts,eyebrows
+bodyparts,ear
+bodyparts,ears
+bodyparts,mouth
+bodyparts,tougue
+bodyparts,tongue
+bodyparts,arm
+bodyparts,feet
+bodyparts,head
+bodyparts,lips
+bodyparts,teeth
+bodyparts,hair
+bodyparts,hips
+bodyparts,butt
+bodyparts,thigh
+bodyparts,calf
+bodyparts,ankle
+bodyparts,wrist
+bodyparts,foot
+bodyparts,elbow
+bodyparts,bicep
+bodyparts,knee
+bodyparts,chest
+bodyparts,shoulders
+bodyparts,neck
+bodyparts,kidneys
+bodyparts,stomach
+bodyparts,eybrows
+bodyparts,legs
+bodyparts,breasts
+bodyparts,elbows
+bodyparts,wrists
+bodyparts,shoulder
+bodyparts,les
+bodyparts,ankles
+bodyparts,face
+bodyparts,breast
+bodyparts,torso
+bodyparts,abdomin
+bodyparts,buttock
+bodyparts,pelvis
+bodyparts,genitals
+bodyparts,skull
+bodyparts,eye
+bodyparts,tendon
+bodyparts,ligament
+bodyparts,vein
+bodyparts,shin
+bodyparts,hip
+bodyparts,kneee
+bodyparts,heart
+bodyparts,arms
+bodyparts,back
+bodyparts,thighs
+bodyparts,heary\
+bodyparts,calves
+bodyparts,fingernails
+instruments,trumpet
+instruments,jew harp
+instruments,jaw harp
+instruments,guitar
+instruments,banjo
+instruments,flute
+instruments,trombone
+instruments,baritone
+instruments,piano
+instruments,electricguitar
+instruments,electricpiano
+instruments,acousticguitar
+instruments,base
+instruments,violin
+instruments,drum
+instruments,drumstick
+instruments,muscian
+instruments,xylophone
+instruments,headphones
+instruments,bass
+instruments,tune
+instruments,melody
+instruments,saxophone
+instruments,viola
+instruments,cello
+instruments,sitar
+instruments,doublebass
+instruments,frenchhorn
+instruments,tuba
+instruments,piccolo
+instruments,basoon
+instruments,bell
+instruments,clarinet
+instruments,drums
+instruments,symbol
+instruments,fluet
+instruments,panio
+instruments,triangle
+instruments,saxphone
+instruments,oboe
+instruments,trumbone
+instruments,vibrophone
+instruments,snaredrum
+instruments,bassdrum
+instruments,quaddrum
+instruments,marimba
+instruments,violinharpbasscello
+instruments,maracas
+instruments,harp
+instruments,saxaphone
+instruments,giutarr
+instruments,microphone
+instruments,chimes
+instruments,zylaphone
+instruments,bells
+instruments,cymbal
+instruments,organ
+instruments,kalimba
+instruments,tamborine
+instruments,ukelue
+instruments,microphone\
+instruments,clarient
+instruments,tambourine
+instruments,jazz bass
+instruments,Barotone Sax
+tools,hammer
+tools,sledge hammer
+tools,nuts and bolts
+tools,hammar drill
+tools,screw driver
+tools,Alan head
+tools,hex wrench
+tools,hedge trimmer
+tools,heat gun
+tools,screw driver
+tools,allen wrench
+tools,stud finder
+tools,hand tool
+tools,hacking knife
+tools,hand drill
+tools,hand saw
+tools,halligan bar
+tools,hand steel
+tools,hand truck
+tools,nailgun
+tools,nail gun
+tools,hot glue gun
+tools,hole driller
+tools,wrench
+tools,nails
+tools,nuts
+tools,screws
+tools,mallet
+tools,chainsaw
+tools,saw
+tools,nailgun
+tools,drill
+tools,electricdrill
+tools,screwdriver
+tools,screw
+tools,flatheadscrew
+tools,mechanicalsaw
+tools,toolbox
+tools,ruler
+tools,calibrate
+tools,level
+tools,nail
+tools,construction
+tools,prybar
+tools,drillpress
+tools,chopsaw
+tools,lawnmower
+tools,trimmer
+tools,shovel
+tools,knife
+tools,leafblower
+tools,axe
+tools,fishingrod
+tools,hammar
+tools,tapemeasure
+tools,scissors
+tools,pencil
+tools,eraser
+tools,file
+tools,bolt
+tools,rake
+tools,sledgehammer
+tools,allenwrench
+tools,studfinder
+tools,washer
+tools,lift
+tools,alanhead
+tools,handsaw
+tools,stick
+tools,sander
+tools,hoe
+tools,hose
+tools,glue
+tools,tape
+tools,nutsandbolts
+tools,saws
+animals,cat
+animals,sea cucumber
+animals,Flying squirrel
+animals,Black bear
+animals,polar bear
+animals,sea lion
+animals,foalcon
+animals,dog
+animals,fish
+animals,bird
+animals,lizzard
+animals,bear
+animals,pig
+animals,cow
+animals,chicken
+animals,horse
+animals,fox
+animals,sloth
+animals,kangaroo
+animals,racoon
+animals,rat
+animals,squirrel
+animals,bunny
+animals,chipmunk
+animals,lizard
+animals,iguana
+animals,monkey
+animals,gorilla
+animals,people
+animals,hampster
+animals,whale
+animals,dolphin
+animals,puffer
+animals,lion
+animals,tiger
+animals,jaguar
+animals,chetah
+animals,butterfly
+animals,caat
+animals,gecko
+animals,snake
+animals,blackbear
+animals,polarbear
+animals,frog
+animals,hippo
+animals,spider
+animals,zebra
+animals,giraffe
+animals,elephant
+animals,ant
+animals,mosquito
+animals,bee
+animals,salmon
+animals,turtle
+animals,lemur
+animals,anteater
+animals,rabbit
+animals,shark
+animals,squid
+animals,owl
+animals,mouse
+animals,meerkat
+animals,rhino
+animals,moose
+animals,deer
+animals,sheep
+animals,bison
+animals,buffalo
+animals,goat
+animals,panda
+animals,penguin
+animals,koala
+animals,hamster
+animals,guineapig
+animals,tuna
+animals,seabass
+animals,parrot
+animals,chimpanzee
+animals,leopard
+animals,octopus
+animals,giraffee
+animals,rooster
+animals,duck
+animals,sealion
+animals,orca
+animals,chickens
+animals,elk
+animals,turkey
+animals,antelop
+animals,manatee
+animals,girrafe
+animals,foal
+toys,blocks
+toys,soccer balls
+toys,soccer ball
+toys,pogo stick
+toys,play pen
+toys,linking logs
+toys,rubiks cube
+toys,paper airplane
+toys,pogo
+toys,paper doll
+toys,pinwhell
+toys,plastic bricks
+toys,bop it
+toys,stuffed animal
+toys,toy cars
+toys,Action Figures
+toys,trucks
+toys,dolls
+toys,stuffedanimals
+toys,rattles
+toys,dollhouses
+toys,games
+toys,dollhouse
+toys,barbie
+toys,cars
+toys,swings
+toys,hoolahoops
+toys,jumpropes
+toys,balls
+toys,bats
+toys,buildingblocks
+toys,linkinglogs
+toys,legos
+toys,doll
+toys,truck
+toys,cards
+toys,train
+toys,stuffed animals
+toys,gaming consoles
+toys,action figures
+toys,actionfigures
+toys,yo-yo
+toys,plushies
+toys,playdoh
+toys,lincolnlogs
+toys,videogames
+toys,bouncyball
+toys,frisbee
+toys,fischerprice
+toys,gamingconsoles
+toys,fidgets
+toys,yoyo
+toys,plasticobjects
+toys,playsets
+toys,ball
+toys,twister
+toys,bopit
+toys,slime
+toys,stuffedanimal
+toys,toycars
+toys,puzzles
+toys,car
+toys,plane
+toys,phone
+toys,rubikscube
+toys,baseballs
+toys,footballs
+toys,soccerballs
+toys,books
+toys,airplane
+toys,cashregister
+toys,laptop
+toys,makeup
+instruments,jingle
+instruments,double bass
+instruments,electric guitar
+instruments,electric piano
+instruments,acoustic guitar
+instruments,jewharp
+instruments,jar
+instruments,jug
+instruments,jewsharp
+instruments,jalekia
+instruments,jalatharangm
+instruments,janggu
+instruments,jazzophone
+instruments,jazzbass
+instruments,jawharp
+instruments,jhorn
+tools,harpoon
+tools,pry-bar
+tools,drill press
+tools,chop-saw
+tools,electric drill
+tools,hexwrench
+tools,hedgetrimmer
+tools,hacksaw
+tools,hotgluegun
+tools,heatgun
+tools,handtool
+tools,hackingknife
+tools,hackle
+tools,hafting
+tools,halliganbar
+tools,handsteel
+tools,handtruck
+tools,handdrill
+tools,hatchet
+tools,holedriller
+tools,hook
+tools,hammardrill
+tools,hex
+animals,furry
+animals,fawn
+animals,foxy
+animals,firefly
+animals,flea
+animals,ferrit
+animals,ferret
+animals,flamingo
+animals,falcon
+animals,finch
+animals,flounder
+animals,flyingsquirrel
+animals,flee
+animals,fink
+toys,buzz light year
+toys,plush
+toys,playdo
+toys,play
+toys,prism
+toys,penguin
+toys,pony
+toys,playingcards
+toys,puzzle
+toys,puppet
+toys,piano
+toys,pogostick
+toys,pingpong
+toys,playpen
+toys,parashoot
+toys,playdough
+toys,putty
+toys,playground
+toys,plushie
+toys,pillowpet
+toys,paperairplane
+toys,pterodactyl
+toys,planet
+toys,plate
+toys,playdoo
+toys,pirate
+toys,policecar
+toys,princess
+toys,pawpatrol
+toys,pollypocket
+toys,popit
+toys,pulley
+toys,playstation
+toys,pad
+toys,paint
+clothing,sandal
+clothing,sweat bands
+clothing,sweatahirt
+clothing,long sleeve
+clothing,sneaker
+clothing,sweatshirts
+clothing,socls
+clothing,tank top
+clothing,sweats
+clothing,shapewear
+clothing,slipper
+clothing,shawl
+clothing,shoulderpad
+clothing,swimsuit
+clothing,suit
+clothing,sundress
+clothing,sandals
+clothing,sunglasses
+clothing,spanks
+clothing,scarves
+clothing,sckort
+clothing,short
+clothing,sleeves
+clothing,sweatbands
+clothing,skort
+clothing,sneakers
+clothing,singlet
+clothing,t shirt
+food,boar
+food,ice cream
+food,fried rice
+food,blue berries
+food,baked potato
+food,beans
+food,French fries
+food,beets
+food,brownie
+food,bakedpotato
+food,berry
+food,bacon
+food,boba
+food,bun
+food,babyspinach
+food,brownrice
+food,brownsugar
+food,butter
+food,buschetta
+food,bigmac
+food,beandip
+food,baquette
+food,bruree
+food,buffalo
+food,bonbon
+food,berries
+food,beet
+food,bellpepper
+food,butternut
+food,brusselssprouts
+food,breakfastsandwhich
+food,babybackribs
+food,brusselsprout
+food,barbecue
+food,bannana
+food,bakedgood
+food,burrito
+food,blackberry
+food,blueberries
+food,beats
+food,bananna
+food,bofu
+food,sweet potatos
+food,bread stick
+furniture,nook
+furniture,bed side table
+furniture,napkinholder
+furniture,nightlamp
+furniture,nighttable
+bodyparts,abdomen
+bodyparts,ass
+bodyparts,anckle
+bodyparts,armpit
+bodyparts,adam's apple
+bodyparts,artery
+bodyparts,adamsapple
+bodyparts,acl
+bodyparts,achilles
+bodyparts,apendix
+bodyparts,appendix
+bodyparts,asophogus
+bodyparts,anus
+bodyparts,aorta
+bodyparts,achellis
+bodyparts,arteries
+furniture,frame
+furniture,curtain
+furniture,coffee table
+furniture,coauch
+furniture,otaman
+furniture,bookshelf
+furniture,bookcase
+furniture,bean bag
+bodyparts,brain
+bodyparts,skin
+bodyparts,knuckles
+bodyparts,hamstring
+bodyparts,quad
+bodyparts,toung
+bodyparts,chin
+bodyparts,forearm
+bodyparts,clavicle
+bodyparts,cheek
+instruments,paino
+instruments,french horn
+instruments,bassguitar
+instruments,voila
+instruments,quitar
+instruments,harmonica
+instruments,trmbone
+instruments,barotonesax
+instruments,recorder
+instruments,pinao
+instruments,bagpipe
+instruments,bongos
+instruments,cymbol
+instruments,snare drum
+instruments,bass drum
+instruments,quad drum
+tools,rench
+tools,flat head screw
+tools,mechanical saw
+tools,hard hat
+tools,lawn mower
+tools,leaf blower
+tools,fishing rod
+tools,tape measure
+tools,plier
+tools,jackhammer
+tools,pliers
+tools,clamp
+tools,siccor
+tools,powerdrill
+tools,ladder
+tools,clips
+animals,bat
+animals,fly
+animals,bug
+animals,baboon
+animals,dact
+animals,squirell
+animals,squirel
+animals,chimpmuck
+animals,raccoon
+animals,cheetah
+animals,llama
+animals,alpaca
+animals,bull
+animals,goose
+animals,beaver
+animals,groundhog
+animals,donkey
+animals,narwal
+animals,seacucumber
+animals,bluejay
+animals,cardinal
+animals,eagle
+animals,hawk
+animals,wolf
+toys,buzzlightyear
+toys,building blocks
+toys,doll houses
+toys,ping pong
+toys,play-doh
+toys,xylophone
+toys,dollhoisew
+toys,lego
+toys,football
+toys,soccerball
+toys,baseball
+toys,figurine
+toys,boardgame
+clothing,tie
+clothing,shoulder pad
+clothing,slip dress
+clothing,crop top
+clothing,zip[ up
+clothing,puffer coat
+clothing,tops
+clothing,jackets
+clothing,t-shirt
+clothing,clothing
+food,eggs
+food,pecan pie
+food,buurger
+food,browniw
+food,pecanpie
+food,macaroni
+food,sandwich
+food,pastry
+food,egg
+food,watermelon
+food,cucumber
+food,nacho
