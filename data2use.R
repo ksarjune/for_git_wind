@@ -1,40 +1,60 @@
-library(data.table)
+# ===========================================================================
+# data2use.R — Data preparation for verbal fluency switching analysis
+#
+# Input:  data2run.csv (wide format, one row per participant)
+#         category_dictionary_pruned.csv (valid category members)
+# Output: dat_long.csv (trial-level data with cue/switch coding)
+#
+# Each participant completed 4 types of verbal fluency lists (8 lists each):
+#   semantic:    name items from a CATEGORY (e.g. animals)
+#   phonological: name items starting with a LETTER (e.g. F)
+#   disjunctive: name items from a category OR starting with a letter
+#   conjunctive: name items from a category AND starting with a letter
+#
+# The raw data stores each list as a comma-separated string of alternating
+# timestamps and responses: "0, dog, 2031, cat, 4502, ..."
+# ===========================================================================
 
+library(data.table)
 rm(list = ls())
 
+# ---- Helper: normalize text for matching ----
 clean <- function(x) {
   x <- tolower(trimws(x))
   x <- gsub("\\s+", " ", x)
   x
 }
 
+# ---- 1. Read wide-format data ----
 dat <- fread("data2run.csv")
 
+# Column names for all 32 lists (4 conditions x 8 lists)
 cols <- c(
-  paste0("semantic_",1:8),
-  paste0("phono_",1:8),
-  paste0("disj_",1:8),
-  paste0("conj_",1:8)
+  paste0("semantic_", 1:8),
+  paste0("phono_", 1:8),
+  paste0("disj_", 1:8),
+  paste0("conj_", 1:8)
 )
 
-# wide to long
-
+# ---- 2. Reshape wide -> long (one row per list per participant) ----
 long_lists <- melt(
   dat,
-  id.vars = "id",
+  id.vars      = "id",
   measure.vars = cols,
   variable.name = "listtype",
-  value.name   = "raw_string"
+  value.name    = "raw_string"
 )
 
-long_lists[, c("list","listnum") := tstrsplit(listtype, "_")]
+# Split listtype into condition label ("semantic", "phono", etc.) and list number
+long_lists[, c("list", "listnum") := tstrsplit(listtype, "_")]
 long_lists[, listnum := as.integer(listnum)]
 
-long_lists <- long_lists[
-  !is.na(raw_string) & nzchar(trimws(raw_string))
-]
+# Drop empty lists
+long_lists <- long_lists[!is.na(raw_string) & nzchar(trimws(raw_string))]
 
-# parse func for rt
+# ---- 3. Parse raw strings into individual responses + inter-response times ----
+# Each raw_string is: "timestamp1, response1, timestamp2, response2, ..."
+# We extract responses and compute RT as the difference between consecutive timestamps
 parse_list <- function(x) {
   parts <- trimws(strsplit(x, ",")[[1]])
   ts  <- suppressWarnings(as.numeric(parts[seq(1, length(parts), 2)]))
@@ -44,21 +64,22 @@ parse_list <- function(x) {
   rsp <- rsp[seq_len(length(ts) - 1)]
 
   data.table(
-    itemnum =seq_along(rsp),
-    rt=diff(ts),
-    response=rsp
+    itemnum  = seq_along(rsp),     # position within this list (1, 2, 3, ...)
+    rt       = diff(ts),           # inter-response time in ms
+    response = rsp
   )
 }
 
-dat_long <- long_lists[
-  , parse_list(raw_string),
-  by=.(id, listtype, list, listnum)
-]
+# Apply parse_list to every list, producing one row per response
+dat_long <- long_lists[, parse_list(raw_string), by = .(id, listtype, list, listnum)]
 
-dat_long[, response:= trimws(response)]
-dat_long[, response_norm:= clean(response)]
+dat_long[, response     := trimws(response)]
+dat_long[, response_norm := clean(response)]
 
-# categories and letters
+# ---- 4. Assign category and letter cues to each listtype ----
+# Semantic lists have only a category (letter = NA)
+# Phonological lists have only a letter (category = NA)
+# Disjunctive and conjunctive lists have BOTH a category and a letter
 
 dat_long[, category := fcase(
   listtype == "semantic_1", "clothing",
@@ -122,70 +143,104 @@ dat_long[, letter := fcase(
   default = NA_character_
 )]
 
-# filtered dictionary
+# ---- 5. Score each response against its cues ----
 
+# Load pruned category dictionary (valid category members)
 cat_dict <- fread("category_dictionary_pruned.csv")
-cat_dict[, category:= clean(category)]
-cat_dict[, response_norm:= clean(response_norm)]
+cat_dict[, category     := clean(category)]
+cat_dict[, response_norm := clean(response_norm)]
 
-# semantic/phono/overlap
-
+# semantic = "yes" if the response is a valid member of its assigned category
 dat_long[, semantic := "no"]
-dat_long[cat_dict, semantic := "yes",
-         on =.(category, response_norm)]
+dat_long[cat_dict, semantic := "yes", on = .(category, response_norm)]
 
-dat_long[, phonological:= fifelse(!is.na(letter) & startsWith(response_norm, letter),"yes","no"
+# phonological = "yes" if the response starts with the assigned letter
+dat_long[, phonological := fifelse(
+  !is.na(letter) & startsWith(response_norm, letter), "yes", "no"
 )]
 
-dat_long[, overlap:= fifelse(semantic=="yes"& phonological=="yes","yes","no")]
+# overlap = "yes" if the response satisfies BOTH cues simultaneously
+dat_long[, overlap := fifelse(semantic == "yes" & phonological == "yes", "yes", "no")]
 
-# switch
+# ---- 6. Code transitions (switches) between consecutive valid responses ----
+# State labels for each response:
+#   A  = letter cue only (phonological match)
+#   B  = category cue only (semantic match)
+#   AB = both cues (overlap)
+#   0  = neither cue (invalid)
 
-dat_long[, state := fcase(semantic=="yes" & phonological=="no",  "B",semantic=="no"  & phonological=="yes", "A",semantic=="yes" & phonological=="yes", "AB",default = "0")]
+dat_long[, state := fcase(
+  semantic == "yes" & phonological == "no",  "B",
+  semantic == "no"  & phonological == "yes", "A",
+  semantic == "yes" & phonological == "yes", "AB",
+  default = "0"
+)]
 
 setorder(dat_long, id, listtype, itemnum)
 
-dat_long[, state_valid := fifelse(state!="0", state, NA_character_)]
+# For switch detection, we only look at valid responses (state != "0")
+dat_long[, state_valid := fifelse(state != "0", state, NA_character_)]
 
-prev_dt <- dat_long[state_valid %in% c("A","B","AB"),.(id, listtype, itemnum, prev_state = shift(state_valid)),by = .(id, listtype)]
-
+# Get the previous valid state within each list (skipping invalid responses)
+prev_dt <- dat_long[
+  state_valid %in% c("A", "B", "AB"),
+  .(id, listtype, itemnum, prev_state = shift(state_valid)),
+  by = .(id, listtype)
+]
 dat_long[, prev_state := NA_character_]
-dat_long[prev_dt, prev_state := i.prev_state,on =.(id, listtype, itemnum)]
+dat_long[prev_dt, prev_state := i.prev_state, on = .(id, listtype, itemnum)]
 
-dat_long[, hard_switch := fifelse(prev_state %in% c("A","B") & state_valid %in% c("A","B") & prev_state != state_valid,"yes","no")]
+# hard switch: single cue -> different single cue (A->B or B->A)
+dat_long[, hard_switch := fifelse(
+  prev_state %in% c("A", "B") & state_valid %in% c("A", "B") & prev_state != state_valid,
+  "yes", "no"
+)]
 
-dat_long[, soft_switch := fifelse((prev_state %in% c("A","B") & state_valid=="AB") |(prev_state=="AB"& state_valid %in% c("A","B")),"yes","no")]
+# soft switch: single cue -> overlap, i.e. a cue is ADDED (A->AB or B->AB)
+# Note: dropping a cue (AB->A or AB->B) is NOT a soft switch; it counts as no switch
+dat_long[, soft_switch := fifelse(
+  prev_state %in% c("A", "B") & state_valid == "AB",
+  "yes", "no"
+)]
 
-dat_long[, any_switch := fifelse(hard_switch=="yes" | soft_switch=="yes","yes","no")]
+# any switch: either hard or soft
+dat_long[, any_switch := fifelse(hard_switch == "yes" | soft_switch == "yes", "yes", "no")]
 
-dat_long[itemnum==1,`:=`(hard_switch="no",soft_switch="no",any_switch ="no")]
+# First item in each list cannot be a switch (no previous response)
+dat_long[itemnum == 1, `:=`(hard_switch = "no", soft_switch = "no", any_switch = "no")]
 
-# # clean up~
+# ---- 7. Clean up temporary columns and set final column order ----
 
-dat_long[, c("state","state_valid","prev_state","response_norm") := NULL]
-setcolorder(dat_long, c("id","listtype","list","listnum","category","letter","itemnum","response","rt","semantic","phonological","overlap","hard_switch","soft_switch","any_switch"))
+dat_long[, c("state", "state_valid", "prev_state", "response_norm") := NULL]
 
-dat_long[, cue_combo := fcase(semantic=="yes" & phonological=="no",  "semantic_only",semantic=="no"  & phonological=="yes", "letter_only",semantic=="yes" & phonological=="yes", "both",default = "neither")]
+setcolorder(dat_long, c(
+  "id", "listtype", "list", "listnum", "category", "letter",
+  "itemnum", "response", "rt",
+  "semantic", "phonological", "overlap",
+  "hard_switch", "soft_switch", "any_switch"
+))
 
-dat_long[, cue_combo := factor(cue_combo,levels = c("semantic_only","letter_only","both","neither"))]
+# ---- 8. Add derived columns ----
 
-# this is for raw counts
-# valid = fits at least one cue
-dat_long[, cue_valid := fifelse(semantic=="yes" | phonological=="yes", "yes","no")]
+# cue_combo: which cue(s) this response satisfies
+dat_long[, cue_combo := fcase(
+  semantic == "yes" & phonological == "no",  "semantic_only",
+  semantic == "no"  & phonological == "yes", "letter_only",
+  semantic == "yes" & phonological == "yes", "both",
+  default = "neither"
+)]
+dat_long[, cue_combo := factor(cue_combo, levels = c("semantic_only", "letter_only", "both", "neither"))]
 
-# individual ocounts
-counts_id <- dat_long[cue_valid=="yes",.(n_valid = .N,n_overlap =sum(overlap=="yes", na.rm=TRUE),n_soft  =sum(soft_switch=="yes", na.rm=TRUE),n_hard  =sum(hard_switch=="yes", na.rm=TRUE),n_any=sum(any_switch=="yes",  na.rm=TRUE)),by=id]
+# cue_valid: "yes" if the response fits at least one cue
+dat_long[, cue_valid := fifelse(semantic == "yes" | phonological == "yes", "yes", "no")]
 
-counts_id[]
+# condition: human-readable condition label
+dat_long[, condition := factor(
+  list,
+  levels = c("semantic", "phono", "disj", "conj"),
+  labels = c("semantic", "phonological", "disjunctive", "conjunctive")
+)]
 
-dat_long[, condition := factor(list, levels = c("semantic","phono","disj","conj"),labels = c("semantic","phonological","disjunctive","conjunctive"))]
-
-# separate dt cuz its easier to understand to me with valid responses, soft switch, hard switch, and any switch
-# gonna look at overlap which is both cues and then sfotcues will be ...whether they go from semantic & phono --> semantic or phono
-# im a little shaky on this but it makes sense in my head <:(
-counts_id_cond <- dat_long[cue_valid=="yes",.(n_valid = .N,n_overlap= sum(overlap=="yes", na.rm=TRUE), n_soft= sum(soft_switch=="yes", na.rm=TRUE),n_hard= sum(hard_switch=="yes", na.rm=TRUE),n_any = sum(any_switch=="yes",  na.rm=TRUE)),by =.(id, condition)]
-
-counts_id_cond[]
-
-
-## check <- dat_long[, .(category, letter, response, semantic, phonological, overlap, hard_switch, soft_switch)]
+# ---- 9. Write processed data to disk ----
+fwrite(dat_long, "dat_long.csv")
+cat("Wrote dat_long.csv:", nrow(dat_long), "rows,", length(unique(dat_long$id)), "participants\n")
