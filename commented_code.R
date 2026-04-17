@@ -1,3 +1,24 @@
+# Experiment: Each participant completed multiple verbal fluency tasks. One
+# semantic, one phonological, one conjunctive (words must start with a letter
+# AND belong to a category), and disjunctive (words must start with a letter
+# AND/OR belong to a category)
+
+# The exact set of categories is diferent across participants and should be controlled for
+
+# Focusing on the disjunctive condition, I want to know what sort of switching leadsa to good performance (high N).
+
+# cue: letter or category
+# hard switch: going from a valid word in one cue to another cue (like "dog" to "park" or "park" to "dog" if it were animals and/or P words)
+# no switch: staying within the same cue(s) (like "park" to "pancake" or "dog" to "dolphin")
+# soft switch: going from a valid word in one cue to a valid word in both cues (like "park" to "panda")
+
+# 1) do people who have high rates of 'hard switches' have better performance than those who don't? same for no-switch and soft switch
+# 2) which typeof transition has the fastest RT?
+# 3) do people tend to switch to a new category when they are at an overlap? (e.g. "park" to "panda" to "fox")
+
+
+library(lmerTest)
+
 # commented analyses 
 
 # hard switch = switching from one cue to another, A->B
@@ -25,7 +46,7 @@ hs <- disj[hard_switch == "yes", .(rt = mean(rt)), by = id] # hard
 hs[,mean(rt)] # 5523.611
 hs
 
-ns <- disj[any_switch == "yes", .(rt = mean(rt)), by = id] # no switch
+ns <- disj[any_switch == "no", .(rt = mean(rt)), by = id] # no switch
 ns[,mean(rt)] # 4847.041
 ns 
 # soft faster than no, no faster than hard
@@ -33,6 +54,7 @@ ns
 # research questions
 
 # q1: Our first question asks how often participants rely on automatic, associative retrieval versus explicit, controlled cluster switching; this analysis is comparing overlap proportion with total valid responses 
+disjunctive_data_clean <- counts_id_cond[condition == "disjunctive"]
 disjunctive_data_clean[, overlap_proportion := n_overlap/n_valid]
 
 # Model with overlap proportion
@@ -73,7 +95,7 @@ dat_long[, switch_type := fifelse(
 )]
 
 # Mixed model: switch type predicts response time
-lmm_q2 <- lmer(rt ~ switch_type + (1 + switch_type | id), 
+lmm_q2 <- lmer(rt ~ switch_type + (1 | id), 
                data = dat_long[condition == "disjunctive" & cue_valid == "yes"])
 summary(lmm_q2)
 # both the soft and no switch are significantly faster than hard switch, soft switch = fastest, soft witches also faster than hard switch. i guess this makes sense? because if youre already transitioning with overlap youre already soft switching 

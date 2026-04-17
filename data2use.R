@@ -2,8 +2,6 @@ library(data.table)
 
 rm(list = ls())
 
-setwd("/Users/kimberlyarjune/research/altfluency")
-
 clean <- function(x) {
   x <- tolower(trimws(x))
   x <- gsub("\\s+", " ", x)
